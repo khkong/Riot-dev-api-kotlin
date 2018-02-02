@@ -6,8 +6,8 @@ fun main(args : Array<String>) {
     println("Hello, RIOT-API-kotlin!")
     ConnectionState.API_KEY = args[0]
 
-    var factory = ConnectionFactory();
-    var conn = factory.getConnection(ConnectionState.SUMMONER_V3)
+    var connFactory = ConnectionFactory();
+    var conn = connFactory.getConnection(ConnectionState.SUMMONER_V3)
     conn as SummonerConnection
     var summoner = conn.getSummonersByName("안산외로운자크");
 
