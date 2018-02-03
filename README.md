@@ -1,8 +1,6 @@
 # Riot-dev-api-kotlin
 The first step to creating a LOL-related application.
 
-Tools for creating Android applications using Kotlin.
-
 https://developer.riotgames.com/api-methods/
 
 

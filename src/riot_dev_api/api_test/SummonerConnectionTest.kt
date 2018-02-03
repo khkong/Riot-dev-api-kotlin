@@ -8,16 +8,12 @@ import riot_dev_api.summoner_v3.SummonerConnection
 
 class SummonerConnectionTest {
     @Test
-    fun connByAccount() {
-        var summonerName = "안산외로운자크"
-        GlobalState.API_KEY = "RGAPI-fa3a91af-9166-4ce3-ab9a-e28ca3dfd0a6"
-
+    fun getSummonerByAccount() {
         var connFactory = ConnectionFactory();
         var connObject = connFactory.getConnection(GlobalState.SUMMONER_V3, GlobalState.KR)
         connObject as SummonerConnection
-
-        var summoner = connObject.connByName(summonerName, GlobalState.API_KEY);
-        summoner = connObject.connByAccount(summoner.accountId!!, GlobalState.API_KEY);
+        var summoner = connObject.getSummonerByName(GlobalState.SUMMONER_NAME_FOR_TEST/*summoner name*/, GlobalState.API_KEY);
+        summoner = connObject.getSummonerByAccount(summoner.accountId!!, GlobalState.API_KEY);
         Assert.assertNotNull("Failed. Summoner.name is null data.",summoner.name);
         Assert.assertNotNull("Failed. Summoner.accountId is null data.",summoner.accountId);
         Assert.assertNotNull("Failed. Summoner.id is null data.",summoner.id);
@@ -27,14 +23,11 @@ class SummonerConnectionTest {
     }
 
     @Test
-    fun connByName() {
-        var summonerName = "안산외로운자크"
-        GlobalState.API_KEY = "RGAPI-fa3a91af-9166-4ce3-ab9a-e28ca3dfd0a6"
-
+    fun getSummonerByName() {
         var connFactory = ConnectionFactory();
         var connObject = connFactory.getConnection(GlobalState.SUMMONER_V3, GlobalState.KR)
         connObject as SummonerConnection
-        var summoner = connObject.connByName("안산외로운자크", GlobalState.API_KEY);
+        var summoner = connObject.getSummonerByName(GlobalState.SUMMONER_NAME_FOR_TEST/*summoner name*/, GlobalState.API_KEY);
         Assert.assertNotNull("Failed. Summoner.name is null data.",summoner.name);
         Assert.assertNotNull("Failed. Summoner.accountId is null data.",summoner.accountId);
         Assert.assertNotNull("Failed. Summoner.id is null data.",summoner.id);
@@ -44,16 +37,12 @@ class SummonerConnectionTest {
     }
 
     @Test
-    fun conn() {
-        var summonerName = "안산외로운자크"
-        GlobalState.API_KEY = "RGAPI-fa3a91af-9166-4ce3-ab9a-e28ca3dfd0a6"
-
+    fun getSummonerBySummonerID() {
         var connFactory = ConnectionFactory();
         var connObject = connFactory.getConnection(GlobalState.SUMMONER_V3, GlobalState.KR)
         connObject as SummonerConnection
-
-        var summoner = connObject.connByName(summonerName, GlobalState.API_KEY);
-        summoner = connObject.conn(summoner.id!!, GlobalState.API_KEY);
+        var summoner = connObject.getSummonerByName(GlobalState.SUMMONER_NAME_FOR_TEST/*summoner name*/, GlobalState.API_KEY);
+        summoner = connObject.getSummonerBySummonerID(summoner.id!!, GlobalState.API_KEY);
         Assert.assertNotNull("Failed. Summoner.name is null data.",summoner.name);
         Assert.assertNotNull("Failed. Summoner.accountId is null data.",summoner.accountId);
         Assert.assertNotNull("Failed. Summoner.id is null data.",summoner.id);

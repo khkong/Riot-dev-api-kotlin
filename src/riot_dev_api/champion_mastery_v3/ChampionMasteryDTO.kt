@@ -11,7 +11,7 @@ class ChampionMasteryDTO {
         get() = field
     /**
      * Champion level for specified player and champion combination.
-     */
+    */
     var championLevel: Int? = null
         set(value) {
             field = value

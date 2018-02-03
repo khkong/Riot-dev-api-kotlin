@@ -29,6 +29,8 @@ abstract class Connection {
                 var list = bufferedReader.readLines();
                 for (s in list)
                     sb.append(s)
+            } else {
+                println(api)
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -94,6 +96,7 @@ abstract class Connection {
             println("GATEWAY_TIMEOUT")
             return false
         }
-        return true
+        println("FALSE, code number : " + code)
+        return false
     }
 }

@@ -2,9 +2,15 @@ package riot_dev_api
 
 class GlobalState {
     companion object {
-        var API_KEY = ""
-        var CURR_STATE = 0
+        /**
+         * Please set your own API key.
+         */
+        var API_KEY = "RGAPI-142ca185-d71a-46c9-89b4-6a2750c3e313"
+        var SUMMONER_NAME_FOR_TEST = "안산외로운자크"
 
+        /**
+         * The following are global variables.
+         */
         const val BAD_REQUEST = 400
         const val UNAUTHORIZED = 403
         const val FORBIDDEN = 403

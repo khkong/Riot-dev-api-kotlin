@@ -9,18 +9,18 @@ class SummonerConnection : Connection {
     private val HOST: String
     private val URL_BY_ACCOUNT: String
     private val URL_BY_NAME: String
-    private val URL_NOTTHING: String
+    private val URL_BY_ID: String
     private val PARAM_API_KEY: String
 
     constructor(host: String) {
         this.HOST = host;
         this.URL_BY_ACCOUNT = "https://" + HOST + GlobalState.PATH_SUMMONER_V3 + "summoners/by-account/"
         this.URL_BY_NAME = "https://" + HOST + GlobalState.PATH_SUMMONER_V3 + "summoners/by-name/"
-        this.URL_NOTTHING = "https://" + HOST + GlobalState.PATH_SUMMONER_V3 + "summoners/"
+        this.URL_BY_ID = "https://" + HOST + GlobalState.PATH_SUMMONER_V3 + "summoners/"
         this.PARAM_API_KEY = "?api_key="
     }
 
-    public fun connByAccount(accountId: Long, apiKey: String): SummonerDTO {
+    public fun getSummonerByAccount(accountId: Long, apiKey: String): SummonerDTO {
         var responde = connectAPI(URL_BY_ACCOUNT + accountId + PARAM_API_KEY + apiKey)
         var summoner = SummonerDTO()
         if(responde.isNotEmpty()) {
@@ -36,7 +36,7 @@ class SummonerConnection : Connection {
         return summoner
     }
 
-    public fun connByName(summonerName: String, apiKey: String): SummonerDTO {
+    public fun getSummonerByName(summonerName: String, apiKey: String): SummonerDTO {
         var urlUTF8 = URLEncoder.encode(summonerName, "UTF-8")
         var responde = connectAPI(URL_BY_NAME + urlUTF8 + PARAM_API_KEY + apiKey)
         var summoner = SummonerDTO()
@@ -54,8 +54,8 @@ class SummonerConnection : Connection {
         return summoner
     }
 
-    public fun conn(summonerId: Long, apiKey: String): SummonerDTO {
-        var responde = connectAPI(URL_NOTTHING + summonerId + PARAM_API_KEY + apiKey)
+    public fun getSummonerBySummonerID(summonerId: Long, apiKey: String): SummonerDTO {
+        var responde = connectAPI(URL_BY_ID + summonerId + PARAM_API_KEY + apiKey)
         var summoner = SummonerDTO()
         if(responde.isNotEmpty()) {
             var parser = JsonParser()
