@@ -1,4 +1,4 @@
-package riot_dev_api.champion_mastery_v3
+package riot_dev_api.dto.champion_mastery_v3
 
 class ChampionMasteryDTO {
     /**

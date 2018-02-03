@@ -1,40 +1,40 @@
-package riot_dev_api.api_test
+package riot_dev_api.unittest
 
 import org.junit.Assert
 import org.junit.Test
-import riot_dev_api.ConnectionFactory
-import riot_dev_api.GlobalState
-import riot_dev_api.champion_mastery_v3.ChampionMasteryConnection
-import riot_dev_api.summoner_v3.SummonerConnection
+import riot_dev_api.connection.ConnectionFactory
+import riot_dev_api.Global
+import riot_dev_api.connection.ChampionMasteryConnection
+import riot_dev_api.connection.SummonerConnection
 
 class ChampionMasteryConnectionTest {
     @Test
-    fun getCampMasteryList() {
+    fun getChampMasteryList() {
         var connFactory = ConnectionFactory();
-        var connObject = connFactory.getConnection(GlobalState.SUMMONER_V3, GlobalState.KR)
+        var connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
         connObject as SummonerConnection
-        var summoner = connObject.getSummonerByName(GlobalState.SUMMONER_NAME_FOR_TEST, GlobalState.API_KEY)
+        var summoner = connObject.getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
 
-        connObject = connFactory.getConnection(GlobalState.CHAMPION_MASTERY_V3, GlobalState.KR)
+        connObject = connFactory.getConnection(Global.Api.CHAMPION_MASTERY_V3, Global.Locale.KR)
         connObject as ChampionMasteryConnection
-        var champMasteryList = connObject.getCampMasteryList(summoner.id!!, GlobalState.API_KEY)
+        var champMasteryList = connObject.getChampMasteryList(summoner.id!!, Global.API_KEY)
 
         //Usually there is more than one, but it is not likely to be empty. Please note.
         Assert.assertFalse("Failed. champMastery list is empty", champMasteryList.isEmpty())
     }
 
     @Test
-    fun getCampMastery() {
+    fun getChampMastery() {
         var connFactory = ConnectionFactory();
-        var connObject = connFactory.getConnection(GlobalState.SUMMONER_V3, GlobalState.KR)
+        var connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
         connObject as SummonerConnection
-        var summoner = connObject.getSummonerByName(GlobalState.SUMMONER_NAME_FOR_TEST, GlobalState.API_KEY)
+        var summoner = connObject.getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
 
-        connObject = connFactory.getConnection(GlobalState.CHAMPION_MASTERY_V3, GlobalState.KR)
+        connObject = connFactory.getConnection(Global.Api.CHAMPION_MASTERY_V3, Global.Locale.KR)
         connObject as ChampionMasteryConnection
-        var champMasteryList = connObject.getCampMasteryList(summoner.id!!, GlobalState.API_KEY)
+        var champMasteryList = connObject.getChampMasteryList(summoner.id!!, Global.API_KEY)
 
-        var champMastery = connObject.getCampMastery(summoner.id!!, champMasteryList[0].championId!!, GlobalState.API_KEY)
+        var champMastery = connObject.getChampMastery(summoner.id!!, champMasteryList[0].championId!!, Global.API_KEY)
         Assert.assertEquals("Champion id is " + champMasteryList[0].championId, champMasteryList[0].playerId, champMastery.playerId)
         Assert.assertEquals("Champion id is " + champMasteryList[0].championId, champMasteryList[0].championPointsUntilNextLevel, champMastery.championPointsUntilNextLevel)
         Assert.assertEquals("Champion id is " + champMasteryList[0].championId, champMasteryList[0].championPointsSinceLastLevel, champMastery.championPointsSinceLastLevel)
@@ -48,13 +48,13 @@ class ChampionMasteryConnectionTest {
     @Test
     fun getTotalMasteryScore() {
         var connFactory = ConnectionFactory();
-        var connObject = connFactory.getConnection(GlobalState.SUMMONER_V3, GlobalState.KR)
+        var connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
         connObject as SummonerConnection
-        var summoner = connObject.getSummonerByName(GlobalState.SUMMONER_NAME_FOR_TEST, GlobalState.API_KEY)
+        var summoner = connObject.getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
 
-        connObject = connFactory.getConnection(GlobalState.CHAMPION_MASTERY_V3, GlobalState.KR)
+        connObject = connFactory.getConnection(Global.Api.CHAMPION_MASTERY_V3, Global.Locale.KR)
         connObject as ChampionMasteryConnection
-        var totalScore = connObject.getTotalMasteryScore(summoner.id!!, GlobalState.API_KEY)
+        var totalScore = connObject.getTotalMasteryScore(summoner.id!!, Global.API_KEY)
 
         Assert.assertNotSame(-1, totalScore)
     }

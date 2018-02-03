@@ -1,4 +1,4 @@
-package riot_dev_api.summoner_v3
+package riot_dev_api.dto.summoner_v3
 
 class SummonerDTO {
     /**

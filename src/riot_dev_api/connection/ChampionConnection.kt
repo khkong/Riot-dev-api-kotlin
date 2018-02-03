@@ -1,8 +1,9 @@
-package riot_dev_api.champion_v3
+package riot_dev_api.connection
 
 import com.google.gson.JsonParser
-import riot_dev_api.Connection
-import riot_dev_api.GlobalState
+import riot_dev_api.Global
+import riot_dev_api.dto.champion_v3.ChampionDTO
+import riot_dev_api.dto.champion_v3.ChampionListDTO
 
 /**
  * Requests to this API are not counted against the application Rate Limits.
@@ -17,8 +18,8 @@ class ChampionConnection : Connection {
 
     constructor(host: String) {
         this.HOST = host;
-        this.URL_CHAMPIONS = "https://" + HOST + GlobalState.PATH_CHAMPION_V3 + "champions"
-        this.URL_BY_CHAMP_ID = "https://" + HOST + GlobalState.PATH_CHAMPION_V3 + "champions/"
+        this.URL_CHAMPIONS = "https://" + HOST + Global.ApiPath.CHAMPION_V3 + "champions"
+        this.URL_BY_CHAMP_ID = "https://" + HOST + Global.ApiPath.CHAMPION_V3 + "champions/"
         this.PARAM_API_KEY1 = "?api_key="
         this.PARAM_API_KEY2 = "&api_key="
         this.PARAM_FREE_TO_PLAY = "?freeToPlay="
@@ -28,9 +29,9 @@ class ChampionConnection : Connection {
      * get champion list.
      * @param freeToflay Optional filter param to retrieve only free to play champions.
      */
-    public fun getChampionList(freeToflay: Boolean, apiKey: String): List<ChampionDTO> {
-        var responde = connectAPI(URL_CHAMPIONS + PARAM_FREE_TO_PLAY + freeToflay + PARAM_API_KEY2 + apiKey)
-        var champions = arrayListOf<ChampionDTO>()
+    public fun getChampionList(freeToflay: Boolean, apiKey: String): ChampionListDTO {
+        var responde = connectAPI(URL_CHAMPIONS + PARAM_FREE_TO_PLAY + freeToflay + PARAM_API_KEY2 + apiKey,0 )
+        var champList = ChampionListDTO()
         if (responde.isNotEmpty()) {
             var parser = JsonParser()
             var element = parser.parse(responde)
@@ -44,17 +45,17 @@ class ChampionConnection : Connection {
                 champion.active = item.asJsonObject["active"].asBoolean
                 champion.freeToPlay = item.asJsonObject["freeToPlay"].asBoolean
                 champion.id = item.asJsonObject["id"].asLong
-                champions.add(champion)
+                champList.champions!!.add(champion)
             }
         }
-        return champions
+        return champList
     }
 
     /**
      * Get one champion by champion ID.
      */
     public fun getChampionByChampionID(championId: Long, apiKey: String): ChampionDTO {
-        var responde = connectAPI(URL_BY_CHAMP_ID + championId + PARAM_API_KEY1 + apiKey)
+        var responde = connectAPI(URL_BY_CHAMP_ID + championId + PARAM_API_KEY1 + apiKey, 0)
         var champion = ChampionDTO()
         if (responde.isNotEmpty()) {
             var parser = JsonParser()

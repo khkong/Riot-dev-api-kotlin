@@ -1,6 +1,6 @@
-package riot_dev_api.champion_v3
+package riot_dev_api.dto.champion_v3
 
-class ChampionDTO{
+class ChampionDTO {
     /**
      * Ranked play enabled flag.
      */

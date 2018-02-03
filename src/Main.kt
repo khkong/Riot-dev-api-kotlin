@@ -1,19 +1,17 @@
-import riot_dev_api.ConnectionFactory
-import riot_dev_api.GlobalState
-import riot_dev_api.api_test.SummonerConnectionTest
-import riot_dev_api.champion_mastery_v3.ChampionMasteryConnection
-import riot_dev_api.summoner_v3.SummonerConnection
+import riot_dev_api.connection.ConnectionFactory
+import riot_dev_api.Global
+import riot_dev_api.connection.SummonerConnection
 
 fun main(args : Array<String>) {
     println("Hello, RIOT-API-kotlin!")
-    GlobalState.API_KEY = args[0]
-    GlobalState.SUMMONER_NAME_FOR_TEST = args[1]
+    Global.API_KEY = args[0]
+    Global.SUMMONER_NAME_FOR_TEST = args[1]
 
     var connFactory = ConnectionFactory()
-    var connObject = connFactory.getConnection(GlobalState.SUMMONER_V3, GlobalState.KR)
+    var connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
     connObject as SummonerConnection
 
-    var summoner = connObject.getSummonerByName(GlobalState.SUMMONER_NAME_FOR_TEST, GlobalState.API_KEY)
+    var summoner = connObject.getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
     println()
     println("Example, SUMMONER_V3 ByName")
     println("id : "+summoner.id)
