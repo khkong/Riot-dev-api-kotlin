@@ -6,7 +6,7 @@ class GlobalState {
         var CURR_STATE = 0
 
         const val BAD_REQUEST = 400
-        const val UBAUTHORIZED = 403
+        const val UNAUTHORIZED = 403
         const val FORBIDDEN = 403
         const val DATA_NOT_FOUND = 404
         const val METHOD_NOT_ALLOWED = 405
