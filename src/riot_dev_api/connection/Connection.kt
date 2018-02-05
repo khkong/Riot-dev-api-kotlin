@@ -45,7 +45,7 @@ abstract class Connection {
     }
 
     fun respondeCode(code: Int, reconnectURL :String, reconnectCount : Int): Boolean {
-        if(200 == code && reconnectCount < Global.RECONNECT_LIMIT){
+        if(200 == code && reconnectCount < Global.ConnectionState.RECONNECT_LIMIT){
 //            println("OK")
             return true;
         }

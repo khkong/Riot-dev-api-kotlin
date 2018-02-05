@@ -5,10 +5,8 @@ class Global {
         /**
          * Please set your own API key.
          */
-        var API_KEY = "RGAPI-142ca185-d71a-46c9-89b4-6a2750c3e313"
+        var API_KEY = "RGAPI-cd7c750f-afd8-41cf-8cd1-3326c051d4ca"
         var SUMMONER_NAME_FOR_TEST = "안산외로운자크"
-        const val RECONNECT_LIMIT = 10
-
     }
     class StaticParam{
         companion object {
@@ -48,6 +46,8 @@ class Global {
             const val BAD_GATEWAY = 502
             const val SERVIVCE_UNAVAILABLE = 503
             const val GATEWAY_TIMEOUT = 504
+
+            const val RECONNECT_LIMIT = 10
         }
     }
 
