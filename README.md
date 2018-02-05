@@ -1,6 +1,7 @@
 # Riot-dev-api-kotlin
-## Overview
+Riot development API written in Kotlin.
 
+## Overview
 The first step to creating a LOL-related application.
 
 Incomplete, under development.
