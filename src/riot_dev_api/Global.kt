@@ -8,9 +8,9 @@ class Global {
         var API_KEY = "RGAPI-cd7c750f-afd8-41cf-8cd1-3326c051d4ca"
         var SUMMONER_NAME_FOR_TEST = "안산외로운자크"
     }
-    class StaticParam{
+    class LeagueQueue{
         companion object {
-            const val RANKED_SOLO_5X5 = "RANKED_SOLO_5X5"
+            const val RANKED_SOLO_5x5 = "RANKED_SOLO_5x5"
             const val RANKED_FLEX_SR = "RANKED_FLEX_SR"
             const val RANKED_FLEX_TT = "RANKED_FLEX_TT"
         }

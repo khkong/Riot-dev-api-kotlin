@@ -37,7 +37,8 @@ class SummonerConnection : Connection {
     }
 
     public fun getSummonerByName(summonerName: String, apiKey: String): SummonerDTO {
-        var urlUTF8 = URLEncoder.encode(summonerName, "UTF-8")
+
+        var urlUTF8 = URLEncoder.encode(summonerName.replace(" ",""), "UTF-8")
         var responde = connectAPI(URL_BY_NAME + urlUTF8 + PARAM_API_KEY + apiKey,0)
         var summoner = SummonerDTO()
         if(responde.isNotEmpty()){

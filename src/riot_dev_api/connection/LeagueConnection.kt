@@ -1,6 +1,7 @@
 package riot_dev_api.connection
 
 import com.google.gson.JsonParser
+import riot_dev_api.Global
 import riot_dev_api.dto.luague_v3.LeagueItemDTO
 import riot_dev_api.dto.luague_v3.LeagueListDTO
 import riot_dev_api.dto.luague_v3.LeaguePositionDTO
@@ -16,10 +17,10 @@ class LeagueConnection : Connection {
 
     constructor(host: String) {
         this.HOST = host;
-        this.URL_CHALLENGER_LEAGUES_BY_QUEUE = "https://" + HOST + "challengerleagues/by-queue/"
-        this.URL_LEAGUE_BY_LEAGUE_ID = "https://" + HOST + "leagues/"
-        this.URL_MASTER_LEAGUES_BY_QUEUE = "https://" + HOST + "masterleagues/by-queue/"
-        this.URL_POSITION_BY_SUMMONER = "https://" + HOST + "by-summoner/"
+        this.URL_CHALLENGER_LEAGUES_BY_QUEUE = "https://" + HOST + Global.ApiPath.LEAGUE_V3 + "challengerleagues/by-queue/"
+        this.URL_LEAGUE_BY_LEAGUE_ID = "https://" + HOST + Global.ApiPath.LEAGUE_V3 + "leagues/"
+        this.URL_MASTER_LEAGUES_BY_QUEUE = "https://" + HOST + Global.ApiPath.LEAGUE_V3 + "masterleagues/by-queue/"
+        this.URL_POSITION_BY_SUMMONER = "https://" + HOST + Global.ApiPath.LEAGUE_V3 + "positions/by-summoner/"
         this.PARAM_API_KEY = "?api_key="
     }
 
@@ -27,57 +28,65 @@ class LeagueConnection : Connection {
         var responde = connectAPI(URL_CHALLENGER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
         var leaqueList = LeagueListDTO()
         if (responde.isNotEmpty()) {
-            var parser = JsonParser()
-            var element = parser.parse(responde)
-            leaqueList.tier = element.asJsonObject["tier"].asString
-            leaqueList.queue = element.asJsonObject["queue"].asString
-            leaqueList.leagueId = element.asJsonObject["leagueId"].asString
-            leaqueList.name = element.asJsonObject["name"].asString
-            var arrObject = element.asJsonObject["entries"]
-            var arr = arrObject.asJsonArray
-            for (item in arr) {
-                var league = LeagueItemDTO()
-                league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
-                league.wins = item.asJsonObject["wins"].asInt
-                league.veteran = item.asJsonObject["veteran"].asBoolean
-                league.losses = item.asJsonObject["losses"].asInt
-                league.rank = item.asJsonObject["rank"].asString
-                league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
-                league.inactive = item.asJsonObject["inactive"].asBoolean
-                league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
-                league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
-                league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
-                leaqueList.entries!!.add(league)
+            try {
+                var parser = JsonParser()
+                var element = parser.parse(responde)
+                leaqueList.tier = element.asJsonObject["tier"].asString
+                leaqueList.queue = element.asJsonObject["queue"].asString
+                leaqueList.leagueId = element.asJsonObject["leagueId"].asString
+                leaqueList.name = element.asJsonObject["name"].asString
+                var arrObject = element.asJsonObject["entries"]
+                var arr = arrObject.asJsonArray
+                for (item in arr) {
+                    var league = LeagueItemDTO()
+                    league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
+                    league.wins = item.asJsonObject["wins"].asInt
+                    league.veteran = item.asJsonObject["veteran"].asBoolean
+                    league.losses = item.asJsonObject["losses"].asInt
+                    league.rank = item.asJsonObject["rank"].asString
+                    league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
+                    league.inactive = item.asJsonObject["inactive"].asBoolean
+                    league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
+                    league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
+                    league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
+                    leaqueList.entries!!.add(league)
+                }
+            } catch (e: Exception) {
+
             }
         }
         return leaqueList
     }
 
-    public fun getLeaguesByLeagueID(leagueID: Int, apiKey: String): LeagueListDTO {
+    public fun getLeaguesByLeagueID(leagueID: String, apiKey: String): LeagueListDTO {
         var responde = connectAPI(URL_LEAGUE_BY_LEAGUE_ID + leagueID + PARAM_API_KEY + apiKey, 0)
         var leaqueList = LeagueListDTO()
         if (responde.isNotEmpty()) {
-            var parser = JsonParser()
-            var element = parser.parse(responde)
-            leaqueList.tier = element.asJsonObject["tier"].asString
-            leaqueList.queue = element.asJsonObject["queue"].asString
-            leaqueList.leagueId = element.asJsonObject["leagueId"].asString
-            leaqueList.name = element.asJsonObject["name"].asString
-            var arrObject = element.asJsonObject["entries"]
-            var arr = arrObject.asJsonArray
-            for (item in arr) {
-                var league = LeagueItemDTO()
-                league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
-                league.wins = item.asJsonObject["wins"].asInt
-                league.veteran = item.asJsonObject["veteran"].asBoolean
-                league.losses = item.asJsonObject["losses"].asInt
-                league.rank = item.asJsonObject["rank"].asString
-                league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
-                league.inactive = item.asJsonObject["inactive"].asBoolean
-                league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
-                league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
-                league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
-                leaqueList.entries!!.add(league)
+            try {
+                var parser = JsonParser()
+                var element = parser.parse(responde)
+                leaqueList.tier = element.asJsonObject["tier"].asString
+                leaqueList.queue = element.asJsonObject["queue"].asString
+                leaqueList.leagueId = element.asJsonObject["leagueId"].asString
+                leaqueList.name = element.asJsonObject["name"].asString
+                var arrObject = element.asJsonObject["entries"]
+                var arr = arrObject.asJsonArray
+                for (item in arr) {
+                    var league = LeagueItemDTO()
+                    league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
+                    league.wins = item.asJsonObject["wins"].asInt
+                    league.veteran = item.asJsonObject["veteran"].asBoolean
+                    league.losses = item.asJsonObject["losses"].asInt
+                    league.rank = item.asJsonObject["rank"].asString
+                    league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
+                    league.inactive = item.asJsonObject["inactive"].asBoolean
+                    league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
+                    league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
+                    league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
+                    leaqueList.entries!!.add(league)
+                }
+            } catch (e: Exception) {
+
             }
         }
         return leaqueList
@@ -87,59 +96,71 @@ class LeagueConnection : Connection {
         var responde = connectAPI(URL_MASTER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
         var leaqueList = LeagueListDTO()
         if (responde.isNotEmpty()) {
-            var parser = JsonParser()
-            var element = parser.parse(responde)
-            leaqueList.tier = element.asJsonObject["tier"].asString
-            leaqueList.queue = element.asJsonObject["queue"].asString
-            leaqueList.leagueId = element.asJsonObject["leagueId"].asString
-            leaqueList.name = element.asJsonObject["name"].asString
-            var arrObject = element.asJsonObject["entries"]
-            var arr = arrObject.asJsonArray
-            for (item in arr) {
-                var league = LeagueItemDTO()
-                league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
-                league.wins = item.asJsonObject["wins"].asInt
-                league.veteran = item.asJsonObject["veteran"].asBoolean
-                league.losses = item.asJsonObject["losses"].asInt
-                league.rank = item.asJsonObject["rank"].asString
-                league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
-                league.inactive = item.asJsonObject["inactive"].asBoolean
-                league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
-                league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
-                league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
-                leaqueList.entries!!.add(league)
+            try {
+                var parser = JsonParser()
+                var element = parser.parse(responde)
+                leaqueList.tier = element.asJsonObject["tier"].asString
+                leaqueList.queue = element.asJsonObject["queue"].asString
+                leaqueList.leagueId = element.asJsonObject["leagueId"].asString
+                leaqueList.name = element.asJsonObject["name"].asString
+                var arrObject = element.asJsonObject["entries"]
+                var arr = arrObject.asJsonArray
+                for (item in arr) {
+                    var league = LeagueItemDTO()
+                    league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
+                    league.wins = item.asJsonObject["wins"].asInt
+                    league.veteran = item.asJsonObject["veteran"].asBoolean
+                    league.losses = item.asJsonObject["losses"].asInt
+                    league.rank = item.asJsonObject["rank"].asString
+                    league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
+                    league.inactive = item.asJsonObject["inactive"].asBoolean
+                    league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
+                    league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
+                    league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
+                    leaqueList.entries!!.add(league)
+                }
+            } catch (e: Exception) {
+
             }
         }
         return leaqueList
     }
 
-    public fun getPositionBySummoner(summonerID: Int, apiKey: String): LeaguePositionDTO {
+    public fun getPositionBySummoner(summonerID: Long, apiKey: String): LeaguePositionDTO {
         var responde = connectAPI(URL_POSITION_BY_SUMMONER + summonerID + PARAM_API_KEY + apiKey, 0)
         var position = LeaguePositionDTO()
         if (responde.isNotEmpty()) {
-            var parser = JsonParser()
-            var element = parser.parse(responde)
-            position.rank = element.asJsonObject["rank"].asString
-            position.queueType = element.asJsonObject["queueType"].asString
-            position.hotStreak = element.asJsonObject["hotStreak"].asBoolean
-            position.wins = element.asJsonObject["wins"].asInt
-            position.veteran = element.asJsonObject["veteran"].asBoolean
-            position.losses = element.asJsonObject["losses"].asInt
-            position.freshBlood = element.asJsonObject["freshBlood"].asBoolean
-            position.leagueId = element.asJsonObject["leagueId"].asString
-            position.playerOrTeamName = element.asJsonObject["playerOrTeamName"].asString
-            position.inactive = element.asJsonObject["inactive"].asBoolean
-            position.playerOrTeamId = element.asJsonObject["playerOrTeamId"].asString
-            position.tier = element.asJsonObject["tier"].asString
-            position.leaguePoints = element.asJsonObject["leaguePoints"].asInt
+            try {
+                var parser = JsonParser()
+                var element = parser.parse(responde)
+                var arr = element.asJsonArray
+                position.rank = arr[0].asJsonObject["rank"].asString
+                position.queueType = arr[0].asJsonObject["queueType"].asString
+                position.hotStreak = arr[0].asJsonObject["hotStreak"].asBoolean
+                position.wins = arr[0].asJsonObject["wins"].asInt
+                position.veteran = arr[0].asJsonObject["veteran"].asBoolean
+                position.losses = arr[0].asJsonObject["losses"].asInt
+                position.freshBlood = arr[0].asJsonObject["freshBlood"].asBoolean
+                position.leagueId = arr[0].asJsonObject["leagueId"].asString
+                position.playerOrTeamName = arr[0].asJsonObject["playerOrTeamName"].asString
+                position.inactive = arr[0].asJsonObject["inactive"].asBoolean
+                position.playerOrTeamId = arr[0].asJsonObject["playerOrTeamId"].asString
+                position.tier = arr[0].asJsonObject["tier"].asString
+                position.leaguePoints = arr[0].asJsonObject["leaguePoints"].asInt
+                position.leagueName = arr[0].asJsonObject["leagueName"].asString
 
-            var miniSeries = MiniSeriesDTO()
-            var arrObject = element.asJsonObject["miniSeries"]
-            miniSeries.wins = arrObject.asJsonObject["wins"].asInt
-            miniSeries.losses = arrObject.asJsonObject["losses"].asInt
-            miniSeries.target = arrObject.asJsonObject["target"].asInt
-            miniSeries.progress = arrObject.asJsonObject["progress"].asString
-            position.miniSeries = miniSeries
+                var miniSeries = MiniSeriesDTO()
+                var arrObject = arr[0].asJsonObject["miniSeries"]
+                if(!arrObject.isJsonNull) {
+                    miniSeries.wins = arrObject.asJsonObject["wins"].asInt
+                    miniSeries.losses = arrObject.asJsonObject["losses"].asInt
+                    miniSeries.target = arrObject.asJsonObject["target"].asInt
+                    miniSeries.progress = arrObject.asJsonObject["progress"].asString
+                    position.miniSeries = miniSeries
+                }
+            } catch (e: Exception) {
+
+            }
         }
         return position
     }

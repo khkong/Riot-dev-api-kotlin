@@ -17,6 +17,11 @@ open class ConnectionFactory {
 //            println("CHAMPION_V3 CONNECTION RETURN")
             return ChampionConnection(localeHost)
         }
+        if (Global.Api.LEAGUE_V3 == state) {
+//            println("CHAMPION_V3 CONNECTION RETURN")
+            return LeagueConnection(localeHost)
+        }
+
         return null
     }
 
