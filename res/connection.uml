@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>riot_dev_api.connection</OriginalElement>
+  <nodes>
+    <node x="438.0" y="150.0">riot_dev_api.connection.LeagueConnection</node>
+    <node x="910.0" y="161.5">riot_dev_api.connection.SummonerConnection</node>
+    <node x="1363.0" y="161.5">riot_dev_api.connection.ChampionMasteryConnection</node>
+    <node x="0.0" y="341.0">riot_dev_api.connection.ConnectionFactory</node>
+    <node x="0.0" y="173.0">riot_dev_api.connection.ChampionConnection</node>
+    <node x="745.75" y="0.0">riot_dev_api.connection.Connection</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="riot_dev_api.connection.SummonerConnection" target="riot_dev_api.connection.Connection">
+      <point x="0.0" y="-61.5" />
+      <point x="1126.5" y="130.0" />
+      <point x="932.625" y="130.0" />
+      <point x="37.375" y="50.0" />
+    </edge>
+    <edge source="riot_dev_api.connection.ChampionMasteryConnection" target="riot_dev_api.connection.Connection">
+      <point x="0.0" y="-61.5" />
+      <point x="1599.5" y="120.0" />
+      <point x="1007.375" y="120.0" />
+      <point x="112.125" y="50.0" />
+    </edge>
+    <edge source="riot_dev_api.connection.LeagueConnection" target="riot_dev_api.connection.Connection">
+      <point x="0.0" y="-73.0" />
+      <point x="664.0" y="130.0" />
+      <point x="857.875" y="130.0" />
+      <point x="-37.375" y="50.0" />
+    </edge>
+    <edge source="riot_dev_api.connection.ChampionConnection" target="riot_dev_api.connection.Connection">
+      <point x="0.0" y="-50.0" />
+      <point x="209.0" y="120.0" />
+      <point x="783.125" y="120.0" />
+      <point x="-112.125" y="50.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.44073275862068967" x="918.0" y="209.0" />
+  <SelectedNodes>
+    <node>riot_dev_api.connection.SummonerConnection</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

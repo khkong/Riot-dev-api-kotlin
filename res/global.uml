@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>riot_dev_api</OriginalElement>
+  <nodes>
+    <node x="1086.0" y="148.5">riot_dev_api.Global.ApiPath</node>
+    <node x="682.5" y="0.0">riot_dev_api.Global</node>
+    <node x="77.0" y="540.0">riot_dev_api.Global.ConnectionState.Companion</node>
+    <node x="536.0" y="240.5">riot_dev_api.Global.LeagueQueue</node>
+    <node x="280.0" y="148.5">riot_dev_api.Global.Api</node>
+    <node x="0.0" y="615.0">riot_dev_api.connection</node>
+    <node x="345.0" y="540.0">riot_dev_api.Global.Api.Companion</node>
+    <node x="393.0" y="615.0">riot_dev_api.dto</node>
+    <node x="778.0" y="275.5">riot_dev_api.Global.Companion</node>
+    <node x="1412.0" y="540.0">riot_dev_api.Global.Locale.Companion</node>
+    <node x="207.0" y="615.0">riot_dev_api.unittest</node>
+    <node x="1363.0" y="137.0">riot_dev_api.Global.Locale</node>
+    <node x="0.0" y="137.0">riot_dev_api.Global.ConnectionState</node>
+    <node x="1161.5" y="540.0">riot_dev_api.Global.ApiPath.Companion</node>
+    <node x="594.0" y="540.0">riot_dev_api.Global.LeagueQueue.Companion</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="riot_dev_api.Global.Companion" target="riot_dev_api.Global">
+      <point x="0.0" y="-38.0" />
+      <point x="922.0" y="117.0" />
+      <point x="801.5" y="117.0" />
+      <point x="17.0" y="38.5" />
+    </edge>
+    <edge source="riot_dev_api.Global.LeagueQueue.Companion" target="riot_dev_api.Global.LeagueQueue">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="73.0" />
+    </edge>
+    <edge source="riot_dev_api.Global.Api" target="riot_dev_api.Global">
+      <point x="0.0" y="-165.0" />
+      <point x="398.0" y="107.0" />
+      <point x="733.5" y="107.0" />
+      <point x="-51.0" y="38.5" />
+    </edge>
+    <edge source="riot_dev_api.Global.Locale" target="riot_dev_api.Global">
+      <point x="0.0" y="-176.5" />
+      <point x="1465.0" y="97.0" />
+      <point x="869.5" y="97.0" />
+      <point x="85.0" y="38.5" />
+    </edge>
+    <edge source="riot_dev_api.Global.Locale.Companion" target="riot_dev_api.Global.Locale">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="176.5" />
+    </edge>
+    <edge source="riot_dev_api.Global.ApiPath.Companion" target="riot_dev_api.Global.ApiPath">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="165.0" />
+    </edge>
+    <edge source="riot_dev_api.Global.ApiPath" target="riot_dev_api.Global">
+      <point x="0.0" y="-165.0" />
+      <point x="1214.5" y="107.0" />
+      <point x="835.5" y="107.0" />
+      <point x="51.0" y="38.5" />
+    </edge>
+    <edge source="riot_dev_api.Global.ConnectionState.Companion" target="riot_dev_api.Global.ConnectionState">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="176.5" />
+    </edge>
+    <edge source="riot_dev_api.Global.LeagueQueue" target="riot_dev_api.Global">
+      <point x="0.0" y="-73.0" />
+      <point x="647.0" y="117.0" />
+      <point x="767.5" y="117.0" />
+      <point x="-17.0" y="38.5" />
+    </edge>
+    <edge source="riot_dev_api.Global.Api.Companion" target="riot_dev_api.Global.Api">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="165.0" />
+    </edge>
+    <edge source="riot_dev_api.Global.ConnectionState" target="riot_dev_api.Global">
+      <point x="0.0" y="-176.5" />
+      <point x="130.0" y="97.0" />
+      <point x="699.5" y="97.0" />
+      <point x="-85.0" y="38.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5154379332073094" x="783.5000000000001" y="322.5" />
+  <SelectedNodes>
+    <node>riot_dev_api.Global</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+
