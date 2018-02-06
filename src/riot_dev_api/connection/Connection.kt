@@ -8,27 +8,38 @@ import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
 abstract class Connection {
+    private var sb: StringBuilder = StringBuilder()
 
     fun connectAPI(api: String, reconnectCount :Int): String {
+        sb.setLength(0);
         var stream: InputStream? = null
         var streamReader: InputStreamReader? = null
         var bufferedReader: BufferedReader? = null
-        var sb : StringBuilder? = null
 
         try {
-            var url = URL(api)
+            val url = URL(api)
             var conn = url.openConnection()
             conn as HttpsURLConnection
+
+            val sleepSec = conn.getHeaderFieldLong("Retry-After", -1)
+            if(sleepSec > -1){
+                println("wait... " + sleepSec + "sec")
+                Thread.sleep(sleepSec * 1000)
+                conn.disconnect()
+                conn = url.openConnection()
+                conn as HttpsURLConnection
+            }
+
             if (respondeCode(conn.responseCode, api, reconnectCount)) { // 200?
                 //Connect to host
                 conn.connect()
                 stream = conn.getInputStream()
                 streamReader = InputStreamReader(stream)
                 bufferedReader = BufferedReader(streamReader)
-                sb = StringBuilder()
-                var list = bufferedReader.readLines();
+                val list = bufferedReader.readLines();
                 for (s in list)
                     sb.append(s)
+                conn.disconnect()
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -45,9 +56,12 @@ abstract class Connection {
     }
 
     fun respondeCode(code: Int, reconnectURL :String, reconnectCount : Int): Boolean {
-        if(200 == code && reconnectCount < Global.ConnectionState.RECONNECT_LIMIT){
-//            println("OK")
+        if (200 == code) {
             return true;
+        }
+        if (reconnectCount < Global.ConnectionState.RECONNECT_LIMIT) {
+            println("CAN NOT CONNECT")
+            return false
         }
         if(Global.ConnectionState.BAD_REQUEST == code){
             println("BAD_REQUEST")
@@ -75,32 +89,22 @@ abstract class Connection {
         }
         if(Global.ConnectionState.RATE_LIMIT_EXCEEDED == code){
             println("RATE_LIMIT_EXCEEDED")
-            Thread.sleep(1000)
-            connectAPI(reconnectURL,reconnectCount+1)
             return false
         }
         if(Global.ConnectionState.INTERNAL_SERVER_ERROR == code){
             println("INTERNAL_SERVER_ERROR")
-            Thread.sleep(1000)
-            connectAPI(reconnectURL,reconnectCount+1)
             return false
         }
         if(Global.ConnectionState.BAD_GATEWAY == code){
             println("BAD_GATEWAY")
-            Thread.sleep(1000)
-            connectAPI(reconnectURL,reconnectCount+1)
             return false
         }
         if(Global.ConnectionState.SERVIVCE_UNAVAILABLE == code){
             println("SERVIVCE_UNAVAILABLE")
-            Thread.sleep(1000)
-            connectAPI(reconnectURL,reconnectCount+1)
             return false
         }
         if(Global.ConnectionState.GATEWAY_TIMEOUT == code){
             println("GATEWAY_TIMEOUT")
-            Thread.sleep(1000)
-            connectAPI(reconnectURL,reconnectCount+1)
             return false
         }
         println("FALSE, code number : " + code)

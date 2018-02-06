@@ -1,8 +1,11 @@
 package riot_dev_api.connection
 
+import com.google.gson.Gson
 import com.google.gson.JsonParser
+import com.google.gson.reflect.TypeToken
 import riot_dev_api.Global
 import riot_dev_api.dto.champion_mastery_v3.ChampionMasteryDTO
+import riot_dev_api.dto.champion_v3.ChampionListDto
 
 class ChampionMasteryConnection : Connection {
     private val HOST: String
@@ -22,64 +25,35 @@ class ChampionMasteryConnection : Connection {
     /**
      * Get all champion mastery entries sorted by number of champion points descending,
      */
-    public fun getChampMasteryList(summonerId: Long, apiKey: String): List<ChampionMasteryDTO> {
-        var responde = connectAPI(URL_BY_SUMMONER_ID + summonerId + PARAM_API_KEY + apiKey,0)
-        var list = arrayListOf<ChampionMasteryDTO>()
-        if(responde.isNotEmpty()){
-            var parser = JsonParser()
-            var element = parser.parse(responde)
-            var arr = element.asJsonArray
-
-            for (item in arr) {
-                var champMastery = ChampionMasteryDTO()
-                champMastery.chestGranted = item.asJsonObject["chestGranted"].asBoolean
-                champMastery.championLevel = item.asJsonObject["championLevel"].asInt
-                champMastery.championPoints = item.asJsonObject["championPoints"].asInt
-                champMastery.championId = item.asJsonObject["championId"].asLong
-                champMastery.playerId = item.asJsonObject["playerId"].asLong
-                champMastery.championPointsUntilNextLevel = item.asJsonObject["championPointsUntilNextLevel"].asLong
-                champMastery.tokensEarned = item.asJsonObject["tokensEarned"].asInt
-                champMastery.championPointsSinceLastLevel = item.asJsonObject["championPointsSinceLastLevel"].asLong
-                champMastery.lastPlayTime = item.asJsonObject["lastPlayTime"].asLong
-                list.add(champMastery)
-            }
+    public fun getChampMasteryList(summonerId: Long, apiKey: String): List<ChampionMasteryDTO>? {
+        val responde = connectAPI(URL_BY_SUMMONER_ID + summonerId + PARAM_API_KEY + apiKey,0)
+        if (responde.isNotEmpty()) {
+            val turnsType = object : TypeToken<List<ChampionMasteryDTO>>() {}.type
+            return Gson().fromJson<List<ChampionMasteryDTO>>(responde, turnsType)
         }
-        return list
+        return null
     }
 
     /**
      * Get a champion mastery by player ID and champion ID.
      */
-    public fun getChampMastery(summonerId: Long, championId: Long, apiKey: String): ChampionMasteryDTO {
-        var responde = connectAPI(URL_BY_CHAMPION_ID + summonerId + "/by-champion/" + championId + PARAM_API_KEY + apiKey,0)
-        var champMastery = ChampionMasteryDTO()
-        if(responde.isNotEmpty()){
-            var parser = JsonParser()
-            var element = parser.parse(responde)
-
-            champMastery.chestGranted = element.asJsonObject["chestGranted"].asBoolean
-            champMastery.championLevel = element.asJsonObject["championLevel"].asInt
-            champMastery.championPoints = element.asJsonObject["championPoints"].asInt
-            champMastery.championId = element.asJsonObject["championId"].asLong
-            champMastery.playerId = element.asJsonObject["playerId"].asLong
-            champMastery.championPointsUntilNextLevel = element.asJsonObject["championPointsUntilNextLevel"].asLong
-            champMastery.tokensEarned = element.asJsonObject["tokensEarned"].asInt
-            champMastery.championPointsSinceLastLevel = element.asJsonObject["championPointsSinceLastLevel"].asLong
-            champMastery.lastPlayTime = element.asJsonObject["lastPlayTime"].asLong
+    public fun getChampMastery(summonerId: Long, championId: Long, apiKey: String): ChampionMasteryDTO? {
+        val responde = connectAPI(URL_BY_CHAMPION_ID + summonerId + "/by-champion/" + championId + PARAM_API_KEY + apiKey,0)
+        if (responde.isNotEmpty()) {
+            return Gson().fromJson(responde, ChampionMasteryDTO::class.java)
         }
-        return champMastery
+        return null
     }
 
     /**
      * Get a player's total champion mastery score, which is the sum of individual champion mastery levels.
      */
     public fun getTotalMasteryScore(summonerId: Long, apiKey: String): Int {
-        var responde = connectAPI(URL_TOTAL_MASTERY_SCORE + summonerId + PARAM_API_KEY + apiKey,0)
-        var score : Int = -1
-        if(responde.isNotEmpty()){
-            score = Integer.parseInt(responde)
+        val responde = connectAPI(URL_TOTAL_MASTERY_SCORE + summonerId + PARAM_API_KEY + apiKey,0)
+        if (responde.isNotEmpty()) {
+            return Gson().fromJson(responde, Int::class.java)
         }
-        return score
+        return -1
     }
 
 }

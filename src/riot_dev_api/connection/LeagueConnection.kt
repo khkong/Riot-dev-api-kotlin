@@ -1,11 +1,15 @@
 package riot_dev_api.connection
 
+import com.google.gson.Gson
 import com.google.gson.JsonParser
+import com.google.gson.reflect.TypeToken
 import riot_dev_api.Global
+import riot_dev_api.dto.champion_mastery_v3.ChampionMasteryDTO
 import riot_dev_api.dto.luague_v3.LeagueItemDTO
 import riot_dev_api.dto.luague_v3.LeagueListDTO
 import riot_dev_api.dto.luague_v3.LeaguePositionDTO
 import riot_dev_api.dto.luague_v3.MiniSeriesDTO
+import riot_dev_api.dto.summoner_v3.SummonerDTO
 
 class LeagueConnection : Connection {
     private val HOST: String
@@ -24,144 +28,36 @@ class LeagueConnection : Connection {
         this.PARAM_API_KEY = "?api_key="
     }
 
-    public fun getChallengerLeaguesByQueue(queue: String, apiKey: String): LeagueListDTO {
-        var responde = connectAPI(URL_CHALLENGER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
-        var leaqueList = LeagueListDTO()
-        if (responde.isNotEmpty()) {
-            try {
-                var parser = JsonParser()
-                var element = parser.parse(responde)
-                leaqueList.tier = element.asJsonObject["tier"].asString
-                leaqueList.queue = element.asJsonObject["queue"].asString
-                leaqueList.leagueId = element.asJsonObject["leagueId"].asString
-                leaqueList.name = element.asJsonObject["name"].asString
-                var arrObject = element.asJsonObject["entries"]
-                var arr = arrObject.asJsonArray
-                for (item in arr) {
-                    var league = LeagueItemDTO()
-                    league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
-                    league.wins = item.asJsonObject["wins"].asInt
-                    league.veteran = item.asJsonObject["veteran"].asBoolean
-                    league.losses = item.asJsonObject["losses"].asInt
-                    league.rank = item.asJsonObject["rank"].asString
-                    league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
-                    league.inactive = item.asJsonObject["inactive"].asBoolean
-                    league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
-                    league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
-                    league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
-                    leaqueList.entries!!.add(league)
-                }
-            } catch (e: Exception) {
-
-            }
+    public fun getChallengerLeaguesByQueue(queue: String, apiKey: String): LeagueListDTO? {
+        val responde = connectAPI(URL_CHALLENGER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
+        if(responde.isNotEmpty()) {
+            return Gson().fromJson(responde, LeagueListDTO::class.java)
         }
-        return leaqueList
+        return null
     }
 
-    public fun getLeaguesByLeagueID(leagueID: String, apiKey: String): LeagueListDTO {
-        var responde = connectAPI(URL_LEAGUE_BY_LEAGUE_ID + leagueID + PARAM_API_KEY + apiKey, 0)
-        var leaqueList = LeagueListDTO()
-        if (responde.isNotEmpty()) {
-            try {
-                var parser = JsonParser()
-                var element = parser.parse(responde)
-                leaqueList.tier = element.asJsonObject["tier"].asString
-                leaqueList.queue = element.asJsonObject["queue"].asString
-                leaqueList.leagueId = element.asJsonObject["leagueId"].asString
-                leaqueList.name = element.asJsonObject["name"].asString
-                var arrObject = element.asJsonObject["entries"]
-                var arr = arrObject.asJsonArray
-                for (item in arr) {
-                    var league = LeagueItemDTO()
-                    league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
-                    league.wins = item.asJsonObject["wins"].asInt
-                    league.veteran = item.asJsonObject["veteran"].asBoolean
-                    league.losses = item.asJsonObject["losses"].asInt
-                    league.rank = item.asJsonObject["rank"].asString
-                    league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
-                    league.inactive = item.asJsonObject["inactive"].asBoolean
-                    league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
-                    league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
-                    league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
-                    leaqueList.entries!!.add(league)
-                }
-            } catch (e: Exception) {
-
-            }
+    public fun getLeaguesByLeagueID(leagueID: String, apiKey: String): LeagueListDTO? {
+        val responde = connectAPI(URL_LEAGUE_BY_LEAGUE_ID + leagueID + PARAM_API_KEY + apiKey, 0)
+        if(responde.isNotEmpty()) {
+            return Gson().fromJson(responde, LeagueListDTO::class.java)
         }
-        return leaqueList
+        return null
     }
 
-    public fun getMasterLeaguesByQueue(queue: String, apiKey: String): LeagueListDTO {
-        var responde = connectAPI(URL_MASTER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
-        var leaqueList = LeagueListDTO()
-        if (responde.isNotEmpty()) {
-            try {
-                var parser = JsonParser()
-                var element = parser.parse(responde)
-                leaqueList.tier = element.asJsonObject["tier"].asString
-                leaqueList.queue = element.asJsonObject["queue"].asString
-                leaqueList.leagueId = element.asJsonObject["leagueId"].asString
-                leaqueList.name = element.asJsonObject["name"].asString
-                var arrObject = element.asJsonObject["entries"]
-                var arr = arrObject.asJsonArray
-                for (item in arr) {
-                    var league = LeagueItemDTO()
-                    league.hotStreak = item.asJsonObject["hotStreak"].asBoolean
-                    league.wins = item.asJsonObject["wins"].asInt
-                    league.veteran = item.asJsonObject["veteran"].asBoolean
-                    league.losses = item.asJsonObject["losses"].asInt
-                    league.rank = item.asJsonObject["rank"].asString
-                    league.playerOrTeamName = item.asJsonObject["playerOrTeamName"].asString
-                    league.inactive = item.asJsonObject["inactive"].asBoolean
-                    league.playerOrTeamId = item.asJsonObject["playerOrTeamId"].asString
-                    league.freshBlood = item.asJsonObject["freshBlood"].asBoolean
-                    league.leaguePoints = item.asJsonObject["leaguePoints"].asInt
-                    leaqueList.entries!!.add(league)
-                }
-            } catch (e: Exception) {
-
-            }
+    public fun getMasterLeaguesByQueue(queue: String, apiKey: String): LeagueListDTO? {
+        val responde = connectAPI(URL_MASTER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
+        if(responde.isNotEmpty()) {
+            return Gson().fromJson(responde, LeagueListDTO::class.java)
         }
-        return leaqueList
+        return null
     }
 
-    public fun getPositionBySummoner(summonerID: Long, apiKey: String): LeaguePositionDTO {
-        var responde = connectAPI(URL_POSITION_BY_SUMMONER + summonerID + PARAM_API_KEY + apiKey, 0)
-        var position = LeaguePositionDTO()
-        if (responde.isNotEmpty()) {
-            try {
-                var parser = JsonParser()
-                var element = parser.parse(responde)
-                var arr = element.asJsonArray
-                position.rank = arr[0].asJsonObject["rank"].asString
-                position.queueType = arr[0].asJsonObject["queueType"].asString
-                position.hotStreak = arr[0].asJsonObject["hotStreak"].asBoolean
-                position.wins = arr[0].asJsonObject["wins"].asInt
-                position.veteran = arr[0].asJsonObject["veteran"].asBoolean
-                position.losses = arr[0].asJsonObject["losses"].asInt
-                position.freshBlood = arr[0].asJsonObject["freshBlood"].asBoolean
-                position.leagueId = arr[0].asJsonObject["leagueId"].asString
-                position.playerOrTeamName = arr[0].asJsonObject["playerOrTeamName"].asString
-                position.inactive = arr[0].asJsonObject["inactive"].asBoolean
-                position.playerOrTeamId = arr[0].asJsonObject["playerOrTeamId"].asString
-                position.tier = arr[0].asJsonObject["tier"].asString
-                position.leaguePoints = arr[0].asJsonObject["leaguePoints"].asInt
-                position.leagueName = arr[0].asJsonObject["leagueName"].asString
-
-                var miniSeries = MiniSeriesDTO()
-                var arrObject = arr[0].asJsonObject["miniSeries"]
-                if(!arrObject.isJsonNull) {
-                    miniSeries.wins = arrObject.asJsonObject["wins"].asInt
-                    miniSeries.losses = arrObject.asJsonObject["losses"].asInt
-                    miniSeries.target = arrObject.asJsonObject["target"].asInt
-                    miniSeries.progress = arrObject.asJsonObject["progress"].asString
-                    position.miniSeries = miniSeries
-                }
-            } catch (e: Exception) {
-
-            }
+    public fun getPositionBySummoner(summonerID: Long, apiKey: String): Set<LeaguePositionDTO>? {
+        val responde = connectAPI(URL_POSITION_BY_SUMMONER + summonerID + PARAM_API_KEY + apiKey, 0)
+        if(responde.isNotEmpty()) {
+            val turnsType = object : TypeToken<Set<LeaguePositionDTO>>() {}.type
+            return Gson().fromJson<Set<LeaguePositionDTO>>(responde, turnsType)
         }
-        return position
+        return null
     }
 }

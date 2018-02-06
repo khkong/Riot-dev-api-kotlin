@@ -1,35 +1,11 @@
 package riot_dev_api.dto.luague_v3
 
-class LeagueListDTO {
-    //    leagueId	string
-    //    tier	string
-    //    entries	List[LeagueItemDTO]
-    //    queue	string
-    //    name	string
-    var leagueId : String? = null
-        set(value) {
-            field = value
-        }
-        get() = field
+import com.google.gson.annotations.SerializedName
 
-    var tier : String? = null
-        set(value) {
-            field = value
-        }
-        get() = field
-
-    var entries : ArrayList<LeagueItemDTO> = arrayListOf<LeagueItemDTO>()
-        get() = field
-
-    var queue : String? = null
-        set(value) {
-            field = value
-        }
-        get() = field
-
-    var name : String? = null
-        set(value) {
-            field = value
-        }
-        get() = field
-}
+data class LeagueListDTO(
+        @SerializedName("leagueId") val leagueId: String,
+        @SerializedName("tier") val tier: String,
+        @SerializedName("entries") val entries: List<LeagueItemDTO>,
+        @SerializedName("queue") val queue: String,
+        @SerializedName("name") val name: String
+)

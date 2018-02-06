@@ -1,28 +1,10 @@
 package riot_dev_api.dto.luague_v3
 
-class MiniSeriesDTO {
-    //    wins	int
-    //    losses	int
-    //    target	int
-    //    progress	string
-    var wins: Int? = null
-        set(value) {
-            field = value
-        }
-        get() = field
-    var losses: Int? = null
-        set(value) {
-            field = value
-        }
-        get() = field
-    var target: Int? = null
-        set(value) {
-            field = value
-        }
-        get() = field
-    var progress: String? = null
-        set(value) {
-            field = value
-        }
-        get() = field
-}
+import com.google.gson.annotations.SerializedName
+
+data class MiniSeriesDTO(
+        @SerializedName("wins") val wins: Int,
+        @SerializedName("losses") val losses: Int,
+        @SerializedName("target") val target: Int,
+        @SerializedName("progress") val progress: String
+)
