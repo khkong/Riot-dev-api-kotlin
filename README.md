@@ -15,7 +15,7 @@ Connection objects are managed by the Factory pattern. It also retrieves API inf
 ![ex_screenshot](/res/connection.png)
 #### Unit test module
 Conduct unit tests on Connection objects. Objects developed so far have been tested.
-<img width="300" height="">![ex_screenshot](/res/unittest.png)</img>
+<img src="/res/unittest.png" width="300" height="300">![ex_screenshot](/res/unittest.png)</img>
 
 ## Library
 Please import the library.
