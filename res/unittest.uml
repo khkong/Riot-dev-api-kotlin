@@ -10,10 +10,8 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="304.0" y="241.0" />
-  <SelectedNodes>
-    <node>riot_dev_api.unittest.SummonerConnectionTest</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="125.5" y="250.0" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>

@@ -7,11 +7,14 @@ The first step to creating a LOL-related application.
 Incomplete, under development.
 
 ## Class diagram
-#### Global variable]
+#### Global variable
+Manage global variables. It is used as parameter of Connection object such as country, URL, API information.
 ![ex_screenshot](/res/global.png)
 #### Connection module
+Connection objects are managed by the Factory pattern. It also retrieves API information through the Connection object.
 ![ex_screenshot](/res/connection.png)
 #### Unit test module
+Conduct unit tests on Connection objects. Objects developed so far have been tested.
 ![ex_screenshot](/res/unittest.png)
 
 ## Library

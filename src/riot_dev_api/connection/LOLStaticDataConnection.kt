@@ -11,7 +11,7 @@ import riot_dev_api.dto.luague_v3.LeaguePositionDTO
 import riot_dev_api.dto.luague_v3.MiniSeriesDTO
 import riot_dev_api.dto.summoner_v3.SummonerDTO
 
-class LeagueConnection : Connection {
+class LOLStaticDataConnection : Connection {
     private var HOST: String
     private var URL_CHALLENGER_LEAGUES_BY_QUEUE: String
     private var URL_LEAGUE_BY_LEAGUE_ID: String
@@ -37,36 +37,4 @@ class LeagueConnection : Connection {
         this.PARAM_API_KEY = "?api_key="
     }
 
-    fun getChallengerLeaguesByQueue(queue: String, apiKey: String): LeagueListDTO? {
-        val responde = connectAPI(URL_CHALLENGER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
-        if(responde.isNotEmpty()) {
-            return Gson().fromJson(responde, LeagueListDTO::class.java)
-        }
-        return null
-    }
-
-    fun getLeaguesByLeagueID(leagueID: String, apiKey: String): LeagueListDTO? {
-        val responde = connectAPI(URL_LEAGUE_BY_LEAGUE_ID + leagueID + PARAM_API_KEY + apiKey, 0)
-        if(responde.isNotEmpty()) {
-            return Gson().fromJson(responde, LeagueListDTO::class.java)
-        }
-        return null
-    }
-
-    fun getMasterLeaguesByQueue(queue: String, apiKey: String): LeagueListDTO? {
-        val responde = connectAPI(URL_MASTER_LEAGUES_BY_QUEUE + queue + PARAM_API_KEY + apiKey, 0)
-        if(responde.isNotEmpty()) {
-            return Gson().fromJson(responde, LeagueListDTO::class.java)
-        }
-        return null
-    }
-
-    fun getPositionBySummoner(summonerID: Long, apiKey: String): Set<LeaguePositionDTO>? {
-        val responde = connectAPI(URL_POSITION_BY_SUMMONER + summonerID + PARAM_API_KEY + apiKey, 0)
-        if(responde.isNotEmpty()) {
-            val turnsType = object : TypeToken<Set<LeaguePositionDTO>>() {}.type
-            return Gson().fromJson<Set<LeaguePositionDTO>>(responde, turnsType)
-        }
-        return null
-    }
 }

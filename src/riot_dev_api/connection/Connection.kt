@@ -8,13 +8,13 @@ import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
 abstract class Connection {
-    private var sb: StringBuilder = StringBuilder()
+    open fun setLocalHost(localHost :String) {}
 
     fun connectAPI(api: String, reconnectCount :Int): String {
-        sb.setLength(0);
         var stream: InputStream? = null
         var streamReader: InputStreamReader? = null
         var bufferedReader: BufferedReader? = null
+        var sb = StringBuilder()
 
         try {
             val url = URL(api)
@@ -41,6 +41,7 @@ abstract class Connection {
                     sb.append(s)
                 conn.disconnect()
             }
+
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -105,9 +106,12 @@ abstract class Connection {
         }
         if(Global.ConnectionState.GATEWAY_TIMEOUT == code){
             println("GATEWAY_TIMEOUT")
+            connectAPI(reconnectURL,reconnectCount+1)
             return false
         }
         println("FALSE, code number : " + code)
         return false
     }
+
+
 }

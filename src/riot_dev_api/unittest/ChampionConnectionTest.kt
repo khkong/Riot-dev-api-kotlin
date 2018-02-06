@@ -27,5 +27,6 @@ class ChampionConnectionTest {
         Assert.assertNotNull("Failed. ChampionList is null data. (all)", allChampions);
         val list = allChampions!!.champions;
         var champion = connObject.getChampionByChampionID(list!![0].id, Global.API_KEY);
+        Assert.assertNotNull("Failed. Champion is null data. (all)", champion);
     }
 }
