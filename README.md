@@ -16,7 +16,6 @@ Connection objects are managed by the Factory pattern. It also retrieves API inf
 #### Unit test module
 Conduct unit tests on Connection objects. Objects developed so far have been tested.
 ![ex_screenshot](/res/unittest.png)
-
 ## Library
 Please import the library.
 1. __[[gson]](https://github.com/google/gson)__ is required.
