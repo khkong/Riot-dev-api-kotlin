@@ -9,13 +9,13 @@ Incomplete, under development.
 ## Class diagram
 #### Global variable
 Manage global variables. It is used as parameter of Connection object such as country, URL, API information.
-![ex_screenshot](/res/global.png)
+<img src="/res/global.png" width="500"></img>
 #### Connection module
 Connection objects are managed by the Factory pattern. It also retrieves API information through the Connection object.
-![ex_screenshot](/res/connection.png)
+<img src="/res/connection.png" width="500"></img>
 #### Unit test module
 Conduct unit tests on Connection objects. Objects developed so far have been tested.
-<img src="/res/unittest.png" width="400">![ex_screenshot](/res/unittest.png)</img>
+<img src="/res/unittest.png" width="400"></img>
 
 ## Library
 Please import the library.
