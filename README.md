@@ -8,7 +8,7 @@ Incomplete, under development.
 
 ## Class diagram
 ### Global variable
-Manage global variables. It is used as parameter of Connection object such as country, URL, API information.
+Manage global variables. It is used as parameter of Connection object such as LOCALE, URL, API information.
 
 <img src="/res/global.png" width="500"></img>
 
