@@ -11,7 +11,7 @@ Not all APIs are supported yet.
 ## Example
 The following shows how it is used.
 
-### General connection 
+#### General connection 
 ```
                //example
                println("example HttpsURLConnection")
@@ -20,7 +20,7 @@ The following shows how it is used.
                connObject as SummonerConnection
                println(connObject.getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY))
 ```
-### Asynchronous connection
+#### Asynchronous connection
 
 ```
                //example using retrofit
@@ -32,25 +32,22 @@ The following shows how it is used.
                        println(response!!.body())
                    }
                    override fun onFailure(paramColl: Call<SummonerDTO>?, t: Throwable?) {
-                       call.cancel()
-                       paramColl!!.cancel()
-           
                    }
                })
 ```
 
 ## Class diagram
-### Global variable
+#### Global variable
 Manage global variables. It is used as parameter of Connection object such as LOCALE, URL, API information.
 
 <img src="/res/global.png" width="500"></img>
 
-### Connection module
+#### Connection module
 Connection objects are managed by the Factory pattern. It also retrieves API information through the Connection object.
 
 <img src="/res/connection.png" width="500"></img>
 
-### Unit test module
+#### Unit test module
 Conduct unit tests on Connection objects. Objects developed so far have been tested.
 
 <img src="/res/unittest.png" width="400"></img>
