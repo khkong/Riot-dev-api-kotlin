@@ -8,9 +8,10 @@ Support for asynchronous processing using "retrofit".
 
 Not all APIs are supported yet.
 
-##Example
+## Example
+The following shows how it is used.
 
-### General connection
+### General connection 
 ```
                //example
                println("example HttpsURLConnection")
