@@ -10,33 +10,32 @@ Not all APIs are supported yet.
 
 ##Example
 ### General connection
-    
-<code>    
-          //example
-          println("example HttpsURLConnection")
-          var connFactory = ConnectionFactory()
-          var connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
-          connObject as SummonerConnection
-          println(connObject.getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY))      
-</code>
-
+```
+               //example
+               println("example HttpsURLConnection")
+               var connFactory = ConnectionFactory()
+               var connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
+               connObject as SummonerConnection
+               println(connObject.getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY))
+```
 ### Asynchronous connection
-<code>
-          //example using retrofit
-          println("example using retrofit")
-          val service = SummonerService.Async(Global.Locale.KR)
-          var call = service.getService().getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
-          call.enqueue(object : Callback<SummonerDTO> {
-              override fun onResponse(paramColl: Call<SummonerDTO>?, response: Response<SummonerDTO>?) {
-                  println(response!!.body())
-              }
-              override fun onFailure(paramColl: Call<SummonerDTO>?, t: Throwable?) {
-                  call.cancel()
-                  paramColl!!.cancel()
-      
-              }
-          })
-</code>
+
+```
+               //example using retrofit
+               println("example using retrofit")
+               val service = SummonerService.Async(Global.Locale.KR)
+               var call = service.getService().getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
+               call.enqueue(object : Callback<SummonerDTO> {
+                   override fun onResponse(paramColl: Call<SummonerDTO>?, response: Response<SummonerDTO>?) {
+                       println(response!!.body())
+                   }
+                   override fun onFailure(paramColl: Call<SummonerDTO>?, t: Throwable?) {
+                       call.cancel()
+                       paramColl!!.cancel()
+           
+                   }
+               })
+```
 
 ## Class diagram
 ### Global variable
