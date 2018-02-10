@@ -1,16 +1,17 @@
 package riot_dev_api.connection
 
+import com.google.gson.Gson
+import retrofit2.http.GET
 import riot_dev_api.Global
 import riot_dev_api.dto.summoner_v3.SummonerDTO
 import java.net.URLEncoder
-import com.google.gson.Gson
 
 class SummonerConnection : Connection {
-    private var HOST: String
-    private var URL_BY_ACCOUNT: String
-    private var URL_BY_NAME: String
-    private var URL_BY_ID: String
-    private var PARAM_API_KEY: String
+    var HOST: String
+    var URL_BY_ACCOUNT: String
+    var URL_BY_NAME: String
+    var URL_BY_ID: String
+    var PARAM_API_KEY: String
 
     constructor(){
         this.HOST = ""
@@ -21,7 +22,7 @@ class SummonerConnection : Connection {
     }
 
     override fun setLocalHost(localHost: String) {
-        this.HOST = localHost;
+        this.HOST = localHost
         this.URL_BY_ACCOUNT = "https://" + HOST + Global.ApiPath.SUMMONER_V3 + "summoners/by-account/"
         this.URL_BY_NAME = "https://" + HOST + Global.ApiPath.SUMMONER_V3 + "summoners/by-name/"
         this.URL_BY_ID = "https://" + HOST + Global.ApiPath.SUMMONER_V3 + "summoners/"

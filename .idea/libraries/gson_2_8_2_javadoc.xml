@@ -3,6 +3,10 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/다운로드/gson-2.8.2.jar!/" />
       <root url="jar://$USER_HOME$/다운로드/junit-4.10.jar!/" />
+      <root url="jar://$USER_HOME$/다운로드/okhttp-3.9.1.jar!/" />
+      <root url="jar://$USER_HOME$/다운로드/okio-1.13.0.jar!/" />
+      <root url="jar://$USER_HOME$/다운로드/retrofit-2.3.0.jar!/" />
+      <root url="jar://$USER_HOME$/다운로드/converter-gson-2.3.0.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/다운로드/gson-2.8.2-javadoc.jar!/" />
