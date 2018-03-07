@@ -9,7 +9,7 @@ Support for asynchronous processing using "retrofit".
 Not all APIs are supported yet.
 
 ## Example
-The following shows how it is used.
+The following shows how to use it.
 
 #### General connection 
 ```
