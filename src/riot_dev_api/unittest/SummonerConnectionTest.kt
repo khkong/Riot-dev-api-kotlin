@@ -42,6 +42,7 @@ class SummonerConnectionTest {
 
     @Test
     fun getSummonerBySummonerID() {
+        
         val connFactory = ConnectionFactory();
         val connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
         connObject as SummonerConnection
