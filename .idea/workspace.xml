@@ -4,23 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/riot_dev_api/Global.kt" mnemonic="6" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25d28a47-0e81-464c-9071-1996ec36bbd2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/riot_dev_api/unittest/SummonerAsyncConnTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/Global.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/Global.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/connection/SummonerConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/connection/SummonerConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/connection/async/SummonerService$Async.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/connection/async/SummonerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/unittest/SummonerConnectionTest$getSummonerByName$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/unittest/SummonerConnectionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Riot-dev-api-LOL/riot_dev_api/unittest/SummonerConnectionTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riot_dev_api/Global.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/riot_dev_api/Global.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riot_dev_api/connection/Connection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/riot_dev_api/connection/Connection.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riot_dev_api/connection/SummonerConnection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/riot_dev_api/connection/SummonerConnection.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riot_dev_api/connection/async/SummonerService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/riot_dev_api/connection/async/SummonerAsyncConn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riot_dev_api/unittest/SummonerConnectionTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/riot_dev_api/unittest/SummonerConnectionTest.kt" afterDir="false" />
-    </list>
+    <list default="true" id="25d28a47-0e81-464c-9071-1996ec36bbd2" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -106,8 +90,8 @@
       <file leaf-file-name="SummonerAsyncConnTest.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/riot_dev_api/unittest/SummonerAsyncConnTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="72" column="44" selection-start-line="72" selection-start-column="44" selection-end-line="72" selection-end-column="44" />
+            <state relative-caret-position="170">
+              <caret line="21" column="102" lean-forward="true" selection-start-line="21" selection-start-column="102" selection-end-line="21" selection-end-column="102" />
               <folding>
                 <element signature="e#31#379#0" expanded="true" />
               </folding>
@@ -385,7 +369,7 @@
       <option name="presentableId" value="Default" />
       <updated>1525509873195</updated>
       <workItem from="1525509874891" duration="2567000" />
-      <workItem from="1525605579018" duration="2203000" />
+      <workItem from="1525605579018" duration="2403000" />
     </task>
     <servers />
   </component>
@@ -417,13 +401,15 @@
     <history-entry file="riot_dev_api_unittest_in_Riot-dev-api-LOL - 2018.05.06 at 20h 46m 51s.xml">
       <configuration name="riot_dev_api.unittest in Riot-dev-api-LOL" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="riot_dev_api_unittest_in_Riot-dev-api-LOL - 2018.05.06 at 20h 58m 38s.xml">
+      <configuration name="riot_dev_api.unittest in Riot-dev-api-LOL" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4770000" />
+    <option name="totallyTimeSpent" value="4970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -699,8 +685,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riot_dev_api/unittest/SummonerAsyncConnTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="72" column="44" selection-start-line="72" selection-start-column="44" selection-end-line="72" selection-end-column="44" />
+        <state relative-caret-position="170">
+          <caret line="21" column="102" lean-forward="true" selection-start-line="21" selection-start-column="102" selection-end-line="21" selection-end-column="102" />
           <folding>
             <element signature="e#31#379#0" expanded="true" />
           </folding>
