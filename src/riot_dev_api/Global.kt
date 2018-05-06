@@ -5,7 +5,7 @@ class Global {
         /**
          * Please set your own API key.
          */
-        var API_KEY = "RGAPI-6ff42201-cb34-456a-bb22-52ffdc98b94a"
+        var API_KEY = "RGAPI-7a658bc7-d039-47bc-8153-3f106a306695"
         var SUMMONER_NAME_FOR_TEST = "안산외로운자크"
     }
     class LeagueQueue{

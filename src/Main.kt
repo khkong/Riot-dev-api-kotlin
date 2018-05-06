@@ -4,7 +4,7 @@ import retrofit2.Response
 import riot_dev_api.connection.ConnectionFactory
 import riot_dev_api.Global
 import riot_dev_api.connection.SummonerConnection
-import riot_dev_api.connection.async.SummonerService
+import riot_dev_api.connection.async.SummonerAsyncConn
 import riot_dev_api.dto.summoner_v3.SummonerDTO
 
 fun main(args : Array<String>) {
@@ -21,8 +21,8 @@ fun main(args : Array<String>) {
 
     //example using retrofit
     println("example using retrofit")
-    val service = SummonerService.Async(Global.Locale.KR)
-    var call = service.getService().getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
+    val service = SummonerAsyncConn.Builder(Global.Locale.KR)
+    var call = service.getConnection().getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
     call.enqueue(object : Callback<SummonerDTO> {
         override fun onResponse(paramColl: Call<SummonerDTO>?, response: Response<SummonerDTO>?) {
             println(response!!.body())
