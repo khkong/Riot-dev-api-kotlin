@@ -109,7 +109,7 @@ abstract class Connection {
             connectAPI(reconnectURL,reconnectCount+1)
             return false
         }
-        println("FALSE, code number : " + code)
+        println("FALSE, code number : ${code}")
         return false
     }
 

@@ -1,7 +1,6 @@
 package riot_dev_api.connection
 
 import com.google.gson.Gson
-import retrofit2.http.GET
 import riot_dev_api.Global
 import riot_dev_api.dto.summoner_v3.SummonerDTO
 import java.net.URLEncoder
