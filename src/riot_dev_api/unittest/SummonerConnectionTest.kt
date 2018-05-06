@@ -8,7 +8,7 @@ import retrofit2.Response
 import riot_dev_api.Global
 import riot_dev_api.connection.ConnectionFactory
 import riot_dev_api.connection.SummonerConnection
-import riot_dev_api.connection.async.SummonerService
+import riot_dev_api.connection.async.SummonerAsyncConn
 import riot_dev_api.dto.summoner_v3.SummonerDTO
 
 class SummonerConnectionTest {
@@ -24,15 +24,6 @@ class SummonerConnectionTest {
 
     @Test
     fun getSummonerByName() {
-        var call = SummonerService.Async(Global.Locale.KR).getService().getSummonerByName(Global.SUMMONER_NAME_FOR_TEST, Global.API_KEY)
-        call.enqueue(object : Callback<SummonerDTO> {
-            override fun onResponse(call: Call<SummonerDTO>?, response: Response<SummonerDTO>?) {
-                println(response!!.body())
-            }
-            override fun onFailure(call: Call<SummonerDTO>?, t: Throwable?) {
-                Assert.assertNotNull("Failed.", null)
-            }
-        })
         val connFactory = ConnectionFactory();
         val connObject = connFactory.getConnection(Global.Api.SUMMONER_V3, Global.Locale.KR)
         connObject as SummonerConnection
