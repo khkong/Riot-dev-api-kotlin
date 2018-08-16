@@ -1,4 +1,4 @@
-# riot-dev-api-kotlin
+# riot-dev-api
 Riot development API written in Kotlin.
 
 ## Overview
